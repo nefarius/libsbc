@@ -23,6 +23,7 @@ missing
 stamp-h1
 autom4te.cache
 
+sbc/sbc.pc
 src/sbcdec
 src/sbcenc
 src/sbcinfo

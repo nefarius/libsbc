@@ -58,4 +58,4 @@ if (test "${enable_tester}" != "no"); then
 fi
 AM_CONDITIONAL(TESTER, test "${enable_tester}" != "no")
 
-AC_OUTPUT(Makefile)
+AC_OUTPUT(Makefile sbc/sbc.pc)
