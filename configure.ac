@@ -44,6 +44,10 @@ AC_ARG_ENABLE(pie, AC_HELP_STRING([--enable-pie],
 	fi
 ])
 
+AC_ARG_ENABLE(tools, AC_HELP_STRING([--disable-tools],
+		[disable SBC tools]), [enable_tools=${enableval}])
+AM_CONDITIONAL(TOOLS, test "${enable_tools}" != "no")
+
 AC_ARG_ENABLE(sbctester, AC_HELP_STRING([--disable-sbctester],
 		[disable SBC tester]), [enable_sbctester=${enableval}])
 if (test "${enable_sbctester}" != "no"); then
