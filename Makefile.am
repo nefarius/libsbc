@@ -3,7 +3,7 @@ AM_MAKEFLAGS = --no-print-directory
 
 sbc_headers = sbc/sbc.h
 
-sbc_sources = sbc/sbc.c sbc/sbc_math.h sbc/sbc_tables.h \
+sbc_sources = sbc/sbc.c sbc/sbc_private.h sbc/sbc_math.h sbc/sbc_tables.h \
 		sbc/sbc_primitives.h sbc/sbc_primitives.c \
 		sbc/sbc_primitives_mmx.h sbc/sbc_primitives_mmx.c \
 		sbc/sbc_primitives_iwmmxt.h sbc/sbc_primitives_iwmmxt.c \
