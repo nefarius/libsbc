@@ -16,11 +16,11 @@ lib_LTLIBRARIES = sbc/libsbc.la
 
 sbc_libsbc_la_SOURCES = $(sbc_headers) $(sbc_sources)
 
+if TOOLS
 noinst_LTLIBRARIES = sbc/libsbc-private.la
 
 sbc_libsbc_private_la_SOURCES = $(sbc_headers) $(sbc_sources)
 
-if TOOLS
 bin_PROGRAMS = src/sbcinfo src/sbcdec src/sbcenc
 
 src_sbcdec_SOURCES = src/sbcdec.c src/formats.h
