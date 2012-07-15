@@ -22,3 +22,7 @@ ltmain.sh
 missing
 stamp-h1
 autom4te.cache
+
+src/sbcdec
+src/sbcenc
+src/sbcinfo

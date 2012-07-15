@@ -12,6 +12,18 @@ lib_LTLIBRARIES = sbc/libsbc.la
 
 sbc_libsbc_la_SOURCES = $(sbc_sources)
 
+noinst_LTLIBRARIES = sbc/libsbc-private.la
+
+sbc_libsbc_private_la_SOURCES = $(sbc_sources)
+
+bin_PROGRAMS = src/sbcinfo src/sbcdec src/sbcenc
+
+src_sbcdec_SOURCES = src/sbcdec.c src/formats.h
+src_sbcdec_LDADD = sbc/libsbc-private.la
+
+src_sbcenc_SOURCES = src/sbcenc.c src/formats.h
+src_sbcenc_LDADD = sbc/libsbc-private.la
+
 AM_CFLAGS = -finline-functions -fgcse-after-reload \
 					-funswitch-loops -funroll-loops
 
