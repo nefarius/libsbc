@@ -36,8 +36,11 @@ noinst_PROGRAMS = src/sbctester
 src_sbctester_LDADD = @SNDFILE_LIBS@ -lm
 endif
 
-AM_CFLAGS = @SNDFILE_CFLAGS@ -finline-functions -fgcse-after-reload \
-					-funswitch-loops -funroll-loops
+AM_CFLAGS = @SNDFILE_CFLAGS@ -fvisibility=hidden \
+				-finline-functions \
+				-fgcse-after-reload \
+				-funswitch-loops \
+				-funroll-loops
 
 pkgconfigdir = $(libdir)/pkgconfig
 
