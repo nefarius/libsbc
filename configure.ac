@@ -44,4 +44,14 @@ AC_ARG_ENABLE(pie, AC_HELP_STRING([--enable-pie],
 	fi
 ])
 
+AC_ARG_ENABLE(sbctester, AC_HELP_STRING([--disable-sbctester],
+		[disable SBC tester]), [enable_sbctester=${enableval}])
+if (test "${enable_sbctester}" != "no"); then
+	PKG_CHECK_MODULES(SNDFILE, sndfile, dummy=yes,
+				AC_MSG_ERROR(sndfile library is required))
+	AC_SUBST(SNDFILE_CFLAGS)
+	AC_SUBST(SNDFILE_LIBS)
+fi
+AM_CONDITIONAL(SBCTESTER, test "${enable_sbctester}" != "no")
+
 AC_OUTPUT(Makefile)

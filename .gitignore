@@ -26,3 +26,4 @@ autom4te.cache
 src/sbcdec
 src/sbcenc
 src/sbcinfo
+src/sbctester

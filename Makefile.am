@@ -24,7 +24,13 @@ src_sbcdec_LDADD = sbc/libsbc-private.la
 src_sbcenc_SOURCES = src/sbcenc.c src/formats.h
 src_sbcenc_LDADD = sbc/libsbc-private.la
 
-AM_CFLAGS = -finline-functions -fgcse-after-reload \
+if SBCTESTER
+noinst_PROGRAMS = src/sbctester
+
+src_sbctester_LDADD = @SNDFILE_LIBS@ -lm
+endif
+
+AM_CFLAGS = @SNDFILE_CFLAGS@ -finline-functions -fgcse-after-reload \
 					-funswitch-loops -funroll-loops
 
 MAINTAINERCLEANFILES = Makefile.in \
