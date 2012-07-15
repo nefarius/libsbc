@@ -30,7 +30,7 @@ src_sbcenc_SOURCES = src/sbcenc.c src/formats.h
 src_sbcenc_LDADD = sbc/libsbc-private.la
 endif
 
-if SBCTESTER
+if TESTER
 noinst_PROGRAMS = src/sbctester
 
 src_sbctester_LDADD = @SNDFILE_LIBS@ -lm

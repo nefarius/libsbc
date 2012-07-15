@@ -48,14 +48,14 @@ AC_ARG_ENABLE(tools, AC_HELP_STRING([--disable-tools],
 		[disable SBC tools]), [enable_tools=${enableval}])
 AM_CONDITIONAL(TOOLS, test "${enable_tools}" != "no")
 
-AC_ARG_ENABLE(sbctester, AC_HELP_STRING([--disable-sbctester],
-		[disable SBC tester]), [enable_sbctester=${enableval}])
-if (test "${enable_sbctester}" != "no"); then
+AC_ARG_ENABLE(tester, AC_HELP_STRING([--disable-tester],
+		[disable SBC tester]), [enable_tester=${enableval}])
+if (test "${enable_tester}" != "no"); then
 	PKG_CHECK_MODULES(SNDFILE, sndfile, dummy=yes,
 				AC_MSG_ERROR(sndfile library is required))
 	AC_SUBST(SNDFILE_CFLAGS)
 	AC_SUBST(SNDFILE_LIBS)
 fi
-AM_CONDITIONAL(SBCTESTER, test "${enable_sbctester}" != "no")
+AM_CONDITIONAL(TESTER, test "${enable_tester}" != "no")
 
 AC_OUTPUT(Makefile)
