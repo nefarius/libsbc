@@ -1,4 +1,4 @@
-SBC_0 {
+SBC_1.0 {
 global:
 	sbc_init;
 	sbc_reinit;
