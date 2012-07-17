@@ -26,7 +26,10 @@ lib_LTLIBRARIES = sbc/libsbc.la
 sbc_libsbc_la_SOURCES = $(sbc_headers) $(sbc_sources)
 
 sbc_libsbc_la_LDFLAGS = -no-undefined \
-			-version-info $(SBC_CURRENT):$(SBC_REVISION):$(SBC_AGE)
+		-version-info $(SBC_CURRENT):$(SBC_REVISION):$(SBC_AGE) \
+		-Wl,--version-script=$(top_srcdir)/sbc/sbc.sym
+
+sbc_libsbc_la_DEPENDENCIES = sbc/sbc.sym
 
 if TOOLS
 noinst_LTLIBRARIES = sbc/libsbc-private.la
@@ -57,6 +60,8 @@ AM_CFLAGS = @SNDFILE_CFLAGS@ -fvisibility=hidden \
 pkgconfigdir = $(libdir)/pkgconfig
 
 pkgconfig_DATA = sbc/sbc.pc
+
+EXTRA_DIST = sbc/sbc.sym
 
 MAINTAINERCLEANFILES = Makefile.in \
 	aclocal.m4 configure config.h.in config.sub config.guess \
