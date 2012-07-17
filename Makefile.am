@@ -1,6 +1,15 @@
 
 AM_MAKEFLAGS = --no-print-directory
 
+# Library code modified:	REVISION++
+# Interfaces changed:		CURRENT++ REVISION=0
+# Interfaces added:		CURRENT++ REVISION=0 AGE++
+# Interfaces removed:		CURRENT++ REVISION=0 AGE=0
+
+SBC_CURRENT = 0
+SBC_REVISION = 0
+SBC_AGE = 0
+
 sbc_headers = sbc/sbc.h
 
 sbc_sources = sbc/sbc.c sbc/sbc_private.h sbc/sbc_math.h sbc/sbc_tables.h \
@@ -15,6 +24,9 @@ pkginclude_HEADERS = $(sbc_headers)
 lib_LTLIBRARIES = sbc/libsbc.la
 
 sbc_libsbc_la_SOURCES = $(sbc_headers) $(sbc_sources)
+
+sbc_libsbc_la_LDFLAGS = -no-undefined \
+			-version-info $(SBC_CURRENT):$(SBC_REVISION):$(SBC_AGE)
 
 if TOOLS
 noinst_LTLIBRARIES = sbc/libsbc-private.la
