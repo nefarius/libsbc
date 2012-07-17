@@ -933,7 +933,7 @@ static void sbc_set_defaults(sbc_t *sbc, unsigned long flags)
 #endif
 }
 
-LIB_EXPORT int sbc_init(sbc_t *sbc, unsigned long flags)
+SBC_EXPORT int sbc_init(sbc_t *sbc, unsigned long flags)
 {
 	if (!sbc)
 		return -EIO;
@@ -954,12 +954,12 @@ LIB_EXPORT int sbc_init(sbc_t *sbc, unsigned long flags)
 	return 0;
 }
 
-LIB_EXPORT ssize_t sbc_parse(sbc_t *sbc, const void *input, size_t input_len)
+SBC_EXPORT ssize_t sbc_parse(sbc_t *sbc, const void *input, size_t input_len)
 {
 	return sbc_decode(sbc, input, input_len, NULL, 0, NULL);
 }
 
-LIB_EXPORT ssize_t sbc_decode(sbc_t *sbc, const void *input, size_t input_len,
+SBC_EXPORT ssize_t sbc_decode(sbc_t *sbc, const void *input, size_t input_len,
 			void *output, size_t output_len, size_t *written)
 {
 	struct sbc_priv *priv;
@@ -1028,7 +1028,7 @@ LIB_EXPORT ssize_t sbc_decode(sbc_t *sbc, const void *input, size_t input_len,
 	return framelen;
 }
 
-LIB_EXPORT ssize_t sbc_encode(sbc_t *sbc, const void *input, size_t input_len,
+SBC_EXPORT ssize_t sbc_encode(sbc_t *sbc, const void *input, size_t input_len,
 			void *output, size_t output_len, ssize_t *written)
 {
 	struct sbc_priv *priv;
@@ -1117,7 +1117,7 @@ LIB_EXPORT ssize_t sbc_encode(sbc_t *sbc, const void *input, size_t input_len,
 	return samples * priv->frame.channels * 2;
 }
 
-LIB_EXPORT void sbc_finish(sbc_t *sbc)
+SBC_EXPORT void sbc_finish(sbc_t *sbc)
 {
 	if (!sbc)
 		return;
@@ -1127,7 +1127,7 @@ LIB_EXPORT void sbc_finish(sbc_t *sbc)
 	memset(sbc, 0, sizeof(sbc_t));
 }
 
-LIB_EXPORT size_t sbc_get_frame_length(sbc_t *sbc)
+SBC_EXPORT size_t sbc_get_frame_length(sbc_t *sbc)
 {
 	int ret;
 	uint8_t subbands, channels, blocks, joint, bitpool;
@@ -1153,7 +1153,7 @@ LIB_EXPORT size_t sbc_get_frame_length(sbc_t *sbc)
 	return ret;
 }
 
-LIB_EXPORT unsigned sbc_get_frame_duration(sbc_t *sbc)
+SBC_EXPORT unsigned sbc_get_frame_duration(sbc_t *sbc)
 {
 	uint8_t subbands, blocks;
 	uint16_t frequency;
@@ -1191,7 +1191,7 @@ LIB_EXPORT unsigned sbc_get_frame_duration(sbc_t *sbc)
 	return (1000000 * blocks * subbands) / frequency;
 }
 
-LIB_EXPORT size_t sbc_get_codesize(sbc_t *sbc)
+SBC_EXPORT size_t sbc_get_codesize(sbc_t *sbc)
 {
 	uint16_t subbands, channels, blocks;
 	struct sbc_priv *priv;
@@ -1210,7 +1210,7 @@ LIB_EXPORT size_t sbc_get_codesize(sbc_t *sbc)
 	return subbands * blocks * channels * 2;
 }
 
-LIB_EXPORT const char *sbc_get_implementation_info(sbc_t *sbc)
+SBC_EXPORT const char *sbc_get_implementation_info(sbc_t *sbc)
 {
 	struct sbc_priv *priv;
 
@@ -1224,7 +1224,7 @@ LIB_EXPORT const char *sbc_get_implementation_info(sbc_t *sbc)
 	return priv->enc_state.implementation_info;
 }
 
-LIB_EXPORT int sbc_reinit(sbc_t *sbc, unsigned long flags)
+SBC_EXPORT int sbc_reinit(sbc_t *sbc, unsigned long flags)
 {
 	struct sbc_priv *priv;
 
