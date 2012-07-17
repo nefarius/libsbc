@@ -60,7 +60,7 @@ extern "C" {
 #define SBC_SB_4		0x00
 #define SBC_SB_8		0x01
 
-/* Data endianness */
+/* data endianess */
 #define SBC_LE			0x00
 #define SBC_BE			0x01
 
