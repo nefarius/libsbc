@@ -36,7 +36,7 @@
 #include <getopt.h>
 #include <sys/stat.h>
 
-#include "sbc.h"
+#include "sbc/sbc.h"
 #include "formats.h"
 
 static int verbose = 0;

@@ -37,7 +37,7 @@
 #include <sys/ioctl.h>
 #include <sys/soundcard.h>
 
-#include "sbc.h"
+#include "sbc/sbc.h"
 #include "formats.h"
 
 #define BUF_SIZE 8192
