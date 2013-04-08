@@ -688,30 +688,32 @@ static int sbc_analyze_audio(struct sbc_encoder_state *state,
 	switch (frame->subbands) {
 	case 4:
 		for (ch = 0; ch < frame->channels; ch++) {
-			x = &state->X[ch][state->position - 16 +
-							frame->blocks * 4];
-			for (blk = 0; blk < frame->blocks; blk += 4) {
+			x = &state->X[ch][state->position - 4 *
+					state->increment + frame->blocks * 4];
+			for (blk = 0; blk < frame->blocks;
+						blk += state->increment) {
 				state->sbc_analyze_4b_4s(
 					state, x,
 					frame->sb_sample_f[blk][ch],
 					frame->sb_sample_f[blk + 1][ch] -
 					frame->sb_sample_f[blk][ch]);
-				x -= 16;
+				x -= 4 * state->increment;
 			}
 		}
 		return frame->blocks * 4;
 
 	case 8:
 		for (ch = 0; ch < frame->channels; ch++) {
-			x = &state->X[ch][state->position - 32 +
-							frame->blocks * 8];
-			for (blk = 0; blk < frame->blocks; blk += 4) {
+			x = &state->X[ch][state->position - 8 *
+					state->increment + frame->blocks * 8];
+			for (blk = 0; blk < frame->blocks;
+						blk += state->increment) {
 				state->sbc_analyze_4b_8s(
 					state, x,
 					frame->sb_sample_f[blk][ch],
 					frame->sb_sample_f[blk + 1][ch] -
 					frame->sb_sample_f[blk][ch]);
-				x -= 32;
+				x -= 8 * state->increment;
 			}
 		}
 		return frame->blocks * 8;
@@ -906,6 +908,7 @@ static void sbc_encoder_init(struct sbc_encoder_state *state,
 {
 	memset(&state->X, 0, sizeof(state->X));
 	state->position = (SBC_X_BUFFER_SIZE - frame->subbands * 9) & ~7;
+	state->increment = 4;
 
 	sbc_init_primitives(state);
 }
