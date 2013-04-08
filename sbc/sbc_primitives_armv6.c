@@ -291,10 +291,30 @@ static void sbc_analyze_4b_8s_armv6(struct sbc_encoder_state *state,
 	sbc_analyze_eight(x + 0, out, analysis_consts_fixed8_simd_even);
 }
 
+static inline void sbc_analyze_1b_8s_armv6_even(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride);
+
+static inline void sbc_analyze_1b_8s_armv6_odd(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
+{
+	sbc_analyze_eight_armv6(x, out, analysis_consts_fixed8_simd_odd);
+	state->sbc_analyze_8s = sbc_analyze_1b_8s_armv6_even;
+}
+
+static inline void sbc_analyze_1b_8s_armv6_even(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
+{
+	sbc_analyze_eight_armv6(x, out, analysis_consts_fixed8_simd_even);
+	state->sbc_analyze_8s = sbc_analyze_1b_8s_armv6_odd;
+}
+
 void sbc_init_primitives_armv6(struct sbc_encoder_state *state)
 {
 	state->sbc_analyze_4s = sbc_analyze_4b_4s_armv6;
-	state->sbc_analyze_8s = sbc_analyze_4b_8s_armv6;
+	if (state->increment == 1)
+		state->sbc_analyze_8s = sbc_analyze_1b_8s_armv6_odd;
+	else
+		state->sbc_analyze_8s = sbc_analyze_4b_8s_armv6;
 	state->implementation_info = "ARMv6 SIMD";
 }
 
