@@ -211,8 +211,8 @@ static inline void _sbc_analyze_eight_neon(const int16_t *in, int32_t *out,
 			"d18", "d19");
 }
 
-static inline void sbc_analyze_4b_4s_neon(int16_t *x,
-						int32_t *out, int out_stride)
+static inline void sbc_analyze_4b_4s_neon(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	_sbc_analyze_four_neon(x + 12, out, analysis_consts_fixed4_simd_odd);
@@ -224,8 +224,8 @@ static inline void sbc_analyze_4b_4s_neon(int16_t *x,
 	_sbc_analyze_four_neon(x + 0, out, analysis_consts_fixed4_simd_even);
 }
 
-static inline void sbc_analyze_4b_8s_neon(int16_t *x,
-						int32_t *out, int out_stride)
+static inline void sbc_analyze_4b_8s_neon(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	_sbc_analyze_eight_neon(x + 24, out, analysis_consts_fixed8_simd_odd);

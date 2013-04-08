@@ -183,8 +183,8 @@ static inline void sbc_analyze_eight_simd(const int16_t *in, int32_t *out,
 			(SBC_COS_TABLE_FIXED8_SCALE - SCALE_OUT_BITS);
 }
 
-static inline void sbc_analyze_4b_4s_simd(int16_t *x,
-						int32_t *out, int out_stride)
+static inline void sbc_analyze_4b_4s_simd(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	sbc_analyze_four_simd(x + 12, out, analysis_consts_fixed4_simd_odd);
@@ -196,8 +196,8 @@ static inline void sbc_analyze_4b_4s_simd(int16_t *x,
 	sbc_analyze_four_simd(x + 0, out, analysis_consts_fixed4_simd_even);
 }
 
-static inline void sbc_analyze_4b_8s_simd(int16_t *x,
-					  int32_t *out, int out_stride)
+static inline void sbc_analyze_4b_8s_simd(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	sbc_analyze_eight_simd(x + 24, out, analysis_consts_fixed8_simd_odd);

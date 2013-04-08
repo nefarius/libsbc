@@ -692,7 +692,7 @@ static int sbc_analyze_audio(struct sbc_encoder_state *state,
 							frame->blocks * 4];
 			for (blk = 0; blk < frame->blocks; blk += 4) {
 				state->sbc_analyze_4b_4s(
-					x,
+					state, x,
 					frame->sb_sample_f[blk][ch],
 					frame->sb_sample_f[blk + 1][ch] -
 					frame->sb_sample_f[blk][ch]);
@@ -707,7 +707,7 @@ static int sbc_analyze_audio(struct sbc_encoder_state *state,
 							frame->blocks * 8];
 			for (blk = 0; blk < frame->blocks; blk += 4) {
 				state->sbc_analyze_4b_8s(
-					x,
+					state, x,
 					frame->sb_sample_f[blk][ch],
 					frame->sb_sample_f[blk + 1][ch] -
 					frame->sb_sample_f[blk][ch]);

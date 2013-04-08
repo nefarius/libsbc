@@ -246,8 +246,8 @@ static inline void sbc_analyze_eight_mmx(const int16_t *in, int32_t *out,
 		: "cc", "memory");
 }
 
-static inline void sbc_analyze_4b_4s_mmx(int16_t *x, int32_t *out,
-						int out_stride)
+static inline void sbc_analyze_4b_4s_mmx(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	sbc_analyze_four_mmx(x + 12, out, analysis_consts_fixed4_simd_odd);
@@ -261,8 +261,8 @@ static inline void sbc_analyze_4b_4s_mmx(int16_t *x, int32_t *out,
 	__asm__ volatile ("emms\n");
 }
 
-static inline void sbc_analyze_4b_8s_mmx(int16_t *x, int32_t *out,
-						int out_stride)
+static inline void sbc_analyze_4b_8s_mmx(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	sbc_analyze_eight_mmx(x + 24, out, analysis_consts_fixed8_simd_odd);

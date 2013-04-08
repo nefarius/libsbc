@@ -268,8 +268,8 @@ static inline void sbc_analyze_eight_iwmmxt(const int16_t *in, int32_t *out,
 		  "wcgr0", "memory");
 }
 
-static inline void sbc_analyze_4b_4s_iwmmxt(int16_t *x, int32_t *out,
-						int out_stride)
+static inline void sbc_analyze_4b_4s_iwmmxt(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	sbc_analyze_four_iwmmxt(x + 12, out, analysis_consts_fixed4_simd_odd);
@@ -281,8 +281,8 @@ static inline void sbc_analyze_4b_4s_iwmmxt(int16_t *x, int32_t *out,
 	sbc_analyze_four_iwmmxt(x + 0, out, analysis_consts_fixed4_simd_even);
 }
 
-static inline void sbc_analyze_4b_8s_iwmmxt(int16_t *x, int32_t *out,
-						int out_stride)
+static inline void sbc_analyze_4b_8s_iwmmxt(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
 	sbc_analyze_eight_iwmmxt(x + 24, out, analysis_consts_fixed8_simd_odd);
