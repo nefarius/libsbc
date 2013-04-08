@@ -522,8 +522,8 @@ static int sbc_calc_scalefactors_j(
 void sbc_init_primitives(struct sbc_encoder_state *state)
 {
 	/* Default implementation for analyze functions */
-	state->sbc_analyze_4b_4s = sbc_analyze_4b_4s_simd;
-	state->sbc_analyze_4b_8s = sbc_analyze_4b_8s_simd;
+	state->sbc_analyze_4s = sbc_analyze_4b_4s_simd;
+	state->sbc_analyze_8s = sbc_analyze_4b_8s_simd;
 
 	/* Default implementation for input reordering / deinterleaving */
 	state->sbc_enc_process_input_4s_le = sbc_enc_process_input_4s_le;

@@ -296,8 +296,8 @@ static inline void sbc_analyze_4b_8s_iwmmxt(struct sbc_encoder_state *state,
 
 void sbc_init_primitives_iwmmxt(struct sbc_encoder_state *state)
 {
-	state->sbc_analyze_4b_4s = sbc_analyze_4b_4s_iwmmxt;
-	state->sbc_analyze_4b_8s = sbc_analyze_4b_8s_iwmmxt;
+	state->sbc_analyze_4s = sbc_analyze_4b_4s_iwmmxt;
+	state->sbc_analyze_8s = sbc_analyze_4b_8s_iwmmxt;
 	state->implementation_info = "IWMMXT";
 }
 

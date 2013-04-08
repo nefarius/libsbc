@@ -879,8 +879,8 @@ static int sbc_enc_process_input_8s_le_neon(int position, const uint8_t *pcm,
 
 void sbc_init_primitives_neon(struct sbc_encoder_state *state)
 {
-	state->sbc_analyze_4b_4s = sbc_analyze_4b_4s_neon;
-	state->sbc_analyze_4b_8s = sbc_analyze_4b_8s_neon;
+	state->sbc_analyze_4s = sbc_analyze_4b_4s_neon;
+	state->sbc_analyze_8s = sbc_analyze_4b_8s_neon;
 	state->sbc_calc_scalefactors = sbc_calc_scalefactors_neon;
 	state->sbc_calc_scalefactors_j = sbc_calc_scalefactors_j_neon;
 	state->sbc_enc_process_input_4s_le = sbc_enc_process_input_4s_le_neon;

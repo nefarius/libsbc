@@ -293,8 +293,8 @@ static void sbc_analyze_4b_8s_armv6(struct sbc_encoder_state *state,
 
 void sbc_init_primitives_armv6(struct sbc_encoder_state *state)
 {
-	state->sbc_analyze_4b_4s = sbc_analyze_4b_4s_armv6;
-	state->sbc_analyze_4b_8s = sbc_analyze_4b_8s_armv6;
+	state->sbc_analyze_4s = sbc_analyze_4b_4s_armv6;
+	state->sbc_analyze_8s = sbc_analyze_4b_8s_armv6;
 	state->implementation_info = "ARMv6 SIMD";
 }
 
