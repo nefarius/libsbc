@@ -6,6 +6,7 @@
  *  Copyright (C) 2004-2010  Marcel Holtmann <marcel@holtmann.org>
  *  Copyright (C) 2004-2005  Henryk Ploetz <henryk@ploetzli.ch>
  *  Copyright (C) 2005-2008  Brad Midgley <bmidgley@xmission.com>
+ *  Copyright (C) 2012-2013  Intel Corporation
  *
  *
  *  This library is free software; you can redistribute it and/or
@@ -962,6 +963,39 @@ SBC_EXPORT int sbc_init(sbc_t *sbc, unsigned long flags)
 	memset(sbc->priv, 0, sizeof(struct sbc_priv));
 
 	sbc_set_defaults(sbc, flags);
+
+	return 0;
+}
+
+SBC_EXPORT int sbc_init_msbc(sbc_t *sbc, unsigned long flags)
+{
+	struct sbc_priv *priv;
+
+	if (!sbc)
+		return -EIO;
+
+	memset(sbc, 0, sizeof(sbc_t));
+
+	sbc->priv_alloc_base = malloc(sizeof(struct sbc_priv) + SBC_ALIGN_MASK);
+	if (!sbc->priv_alloc_base)
+		return -ENOMEM;
+
+	sbc->priv = (void *) (((uintptr_t) sbc->priv_alloc_base +
+			SBC_ALIGN_MASK) & ~((uintptr_t) SBC_ALIGN_MASK));
+
+	memset(sbc->priv, 0, sizeof(struct sbc_priv));
+
+	priv = sbc->priv;
+	priv->msbc = true;
+
+	sbc_set_defaults(sbc, flags);
+
+	sbc->frequency = SBC_FREQ_16000;
+	sbc->blocks = MSBC_BLOCKS;
+	sbc->subbands = SBC_SB_8;
+	sbc->mode = SBC_MODE_MONO;
+	sbc->allocation = SBC_AM_LOUDNESS;
+	sbc->bitpool = 26;
 
 	return 0;
 }

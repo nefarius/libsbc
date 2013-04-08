@@ -1,6 +1,7 @@
 SBC_1.0 {
 global:
 	sbc_init;
+	sbc_init_msbc;
 	sbc_reinit;
 	sbc_finish;
 
