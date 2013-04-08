@@ -276,6 +276,27 @@ static inline void sbc_analyze_4b_8s_mmx(struct sbc_encoder_state *state,
 	__asm__ volatile ("emms\n");
 }
 
+static inline void sbc_analyze_1b_8s_mmx_even(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride);
+
+static inline void sbc_analyze_1b_8s_mmx_odd(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
+{
+	sbc_analyze_eight_mmx(x, out, analysis_consts_fixed8_simd_odd);
+	state->sbc_analyze_8s = sbc_analyze_1b_8s_mmx_even;
+
+	__asm__ volatile ("emms\n");
+}
+
+static inline void sbc_analyze_1b_8s_mmx_even(struct sbc_encoder_state *state,
+		int16_t *x, int32_t *out, int out_stride)
+{
+	sbc_analyze_eight_mmx(x, out, analysis_consts_fixed8_simd_even);
+	state->sbc_analyze_8s = sbc_analyze_1b_8s_mmx_odd;
+
+	__asm__ volatile ("emms\n");
+}
+
 static void sbc_calc_scalefactors_mmx(
 	int32_t sb_sample_f[16][2][8],
 	uint32_t scale_factor[2][8],
@@ -366,7 +387,10 @@ void sbc_init_primitives_mmx(struct sbc_encoder_state *state)
 {
 	if (check_mmx_support()) {
 		state->sbc_analyze_4s = sbc_analyze_4b_4s_mmx;
-		state->sbc_analyze_8s = sbc_analyze_4b_8s_mmx;
+		if (state->increment == 1)
+			state->sbc_analyze_8s = sbc_analyze_1b_8s_mmx_odd;
+		else
+			state->sbc_analyze_8s = sbc_analyze_4b_8s_mmx;
 		state->sbc_calc_scalefactors = sbc_calc_scalefactors_mmx;
 		state->implementation_info = "MMX";
 	}
