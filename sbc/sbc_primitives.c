@@ -570,5 +570,13 @@ void sbc_init_primitives(struct sbc_encoder_state *state)
 #endif
 #ifdef SBC_BUILD_WITH_NEON_SUPPORT
 	sbc_init_primitives_neon(state);
+
+	if (state->increment == 1) {
+		state->sbc_analyze_8s = sbc_analyze_1b_8s_simd_odd;
+		state->sbc_enc_process_input_4s_le = sbc_enc_process_input_4s_le;
+		state->sbc_enc_process_input_4s_be = sbc_enc_process_input_4s_be;
+		state->sbc_enc_process_input_8s_le = sbc_enc_process_input_8s_le;
+		state->sbc_enc_process_input_8s_be = sbc_enc_process_input_8s_be;
+	}
 #endif
 }
