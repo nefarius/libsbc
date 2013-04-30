@@ -1,2 +1,5 @@
+ver 1.1:
+	Add support for mSBC encoding and decoding functionality.
+
 ver 1.0:
 	Initial public release.
