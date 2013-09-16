@@ -136,8 +136,6 @@ static const int32_t synmatrix8[16][8] = {
 	  SN8(0xfb8e3130), SN8(0xf8275a10), SN8(0xfe70747c), SN8(0x06a6d988) }
 };
 
-/* Uncomment the following line to enable high precision build of SBC encoder */
-
 /* #define SBC_HIGH_PRECISION */
 
 #ifdef SBC_HIGH_PRECISION

@@ -58,4 +58,12 @@ if (test "${enable_tester}" != "no"); then
 fi
 AM_CONDITIONAL(TESTER, test "${enable_tester}" != "no")
 
+AC_ARG_ENABLE(high-precision, AC_HELP_STRING([--disable-high-precision],
+					[disable high precision support]),
+					[enable_high_precision=${enableval}])
+if (test "${enable_high_precision}" != "no"); then
+	AC_DEFINE(SBC_HIGH_PRECISION, 1,
+		[Define to 1 to enable high precision build of SBC encoder])
+fi
+
 AC_OUTPUT(Makefile sbc/sbc.pc)
