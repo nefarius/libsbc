@@ -19,3 +19,7 @@ SBC_1.1 {
 global:
 	sbc_init_msbc;
 } SBC_1.0;
+SBC_1.2 {
+global:
+	sbc_init_a2dp;
+} SBC_1.1;
