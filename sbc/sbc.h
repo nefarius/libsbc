@@ -84,6 +84,8 @@ typedef struct sbc_struct sbc_t;
 int sbc_init(sbc_t *sbc, unsigned long flags);
 int sbc_reinit(sbc_t *sbc, unsigned long flags);
 int sbc_init_msbc(sbc_t *sbc, unsigned long flags);
+int sbc_init_a2dp(sbc_t *sbc, unsigned long flags,
+					const void *conf, size_t conf_len);
 
 ssize_t sbc_parse(sbc_t *sbc, const void *input, size_t input_len);
 
