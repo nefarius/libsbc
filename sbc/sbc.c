@@ -25,14 +25,6 @@
  *
  */
 
-/* todo items:
-
-  use a log2 table for byte integer scale factors calculation (sum log2 results
-  for high and low bytes) fill bitpool by 16 bits instead of one at a time in
-  bits allocation/bitpool generation port to the dsp
-
-*/
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
