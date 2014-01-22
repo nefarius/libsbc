@@ -136,8 +136,6 @@ static const int32_t synmatrix8[16][8] = {
 	  SN8(0xfb8e3130), SN8(0xf8275a10), SN8(0xfe70747c), SN8(0x06a6d988) }
 };
 
-/* #define SBC_HIGH_PRECISION */
-
 #ifdef SBC_HIGH_PRECISION
 #define FIXED_A int64_t /* data type for fixed point accumulator */
 #define FIXED_T int32_t /* data type for fixed point constants */

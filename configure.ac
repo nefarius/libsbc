@@ -44,6 +44,14 @@ AC_ARG_ENABLE(pie, AC_HELP_STRING([--enable-pie],
 	fi
 ])
 
+AC_ARG_ENABLE(high-precision, AC_HELP_STRING([--enable-high-precision],
+					[enable SBC high precision support]),
+					[enable_high_precision=${enableval}])
+if (test "${enable_high_precision}" = "yes"); then
+	AC_DEFINE(SBC_HIGH_PRECISION, 1,
+		[Define to 1 to enable high precision build of SBC encoder])
+fi
+
 AC_ARG_ENABLE(tools, AC_HELP_STRING([--disable-tools],
 		[disable SBC tools]), [enable_tools=${enableval}])
 AM_CONDITIONAL(TOOLS, test "${enable_tools}" != "no")
@@ -57,13 +65,5 @@ if (test "${enable_tester}" != "no"); then
 	AC_SUBST(SNDFILE_LIBS)
 fi
 AM_CONDITIONAL(TESTER, test "${enable_tester}" != "no")
-
-AC_ARG_ENABLE(high-precision, AC_HELP_STRING([--disable-high-precision],
-					[disable high precision support]),
-					[enable_high_precision=${enableval}])
-if (test "${enable_high_precision}" != "no"); then
-	AC_DEFINE(SBC_HIGH_PRECISION, 1,
-		[Define to 1 to enable high precision build of SBC encoder])
-fi
 
 AC_OUTPUT(Makefile sbc/sbc.pc)
