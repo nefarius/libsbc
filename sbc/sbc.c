@@ -1003,7 +1003,7 @@ static void sbc_encoder_init(bool msbc, struct sbc_encoder_state *state,
 }
 
 struct sbc_priv {
-	int init;
+	bool init;
 	bool msbc;
 	struct SBC_ALIGNED sbc_frame frame;
 	struct SBC_ALIGNED sbc_decoder_state dec_state;
@@ -1211,7 +1211,7 @@ SBC_EXPORT ssize_t sbc_decode(sbc_t *sbc, const void *input, size_t input_len,
 
 	if (!priv->init) {
 		sbc_decoder_init(&priv->dec_state, &priv->frame);
-		priv->init = 1;
+		priv->init = true;
 
 		sbc->frequency = priv->frame.frequency;
 		sbc->mode = priv->frame.mode;
@@ -1299,7 +1299,7 @@ SBC_EXPORT ssize_t sbc_encode(sbc_t *sbc, const void *input, size_t input_len,
 		priv->frame.length = sbc_get_frame_length(sbc);
 
 		sbc_encoder_init(priv->msbc, &priv->enc_state, &priv->frame);
-		priv->init = 1;
+		priv->init = true;
 	} else if (priv->frame.bitpool != sbc->bitpool) {
 		priv->frame.length = sbc_get_frame_length(sbc);
 		priv->frame.bitpool = sbc->bitpool;
@@ -1483,7 +1483,7 @@ SBC_EXPORT int sbc_reinit(sbc_t *sbc, unsigned long flags)
 
 	priv = sbc->priv;
 
-	if (priv->init == 1)
+	if (priv->init)
 		memset(sbc->priv, 0, sizeof(struct sbc_priv));
 
 	sbc_set_defaults(sbc, flags);
