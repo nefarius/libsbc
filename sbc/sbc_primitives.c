@@ -33,6 +33,7 @@
 #include "sbc_tables.h"
 
 #include "sbc_primitives.h"
+#include "sbc_primitives_sse.h"
 #include "sbc_primitives_mmx.h"
 #include "sbc_primitives_iwmmxt.h"
 #include "sbc_primitives_neon.h"
@@ -590,6 +591,19 @@ static int sbc_calc_scalefactors_j(
 	return joint;
 }
 
+static void sbc_init_primitives_x86(struct sbc_encoder_state *state)
+{
+	__builtin_cpu_init();
+
+	if (__builtin_cpu_supports("mmx"))
+		sbc_init_primitives_mmx(state);
+
+#ifdef SBC_BUILD_WITH_SSE_SUPPORT
+	if (__builtin_cpu_supports("sse4.2"))
+		sbc_init_primitives_sse(state);
+#endif
+}
+
 /*
  * Detect CPU features and setup function pointers
  */
@@ -614,9 +628,7 @@ void sbc_init_primitives(struct sbc_encoder_state *state)
 	state->implementation_info = "Generic C";
 
 	/* X86/AMD64 optimizations */
-#ifdef SBC_BUILD_WITH_MMX_SUPPORT
-	sbc_init_primitives_mmx(state);
-#endif
+	sbc_init_primitives_x86(state);
 
 	/* ARM optimizations */
 #ifdef SBC_BUILD_WITH_ARMV6_SUPPORT

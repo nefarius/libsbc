@@ -2,10 +2,7 @@
  *
  *  Bluetooth low-complexity, subband codec (SBC) library
  *
- *  Copyright (C) 2008-2010  Nokia Corporation
- *  Copyright (C) 2004-2010  Marcel Holtmann <marcel@holtmann.org>
- *  Copyright (C) 2004-2005  Henryk Ploetz <henryk@ploetzli.ch>
- *  Copyright (C) 2005-2006  Brad Midgley <bmidgley@xmission.com>
+ *  Copyright (C) 2020 Intel Corporation
  *
  *
  *  This library is free software; you can redistribute it and/or
@@ -30,15 +27,15 @@
 #include "sbc_math.h"
 #include "sbc_tables.h"
 
-#include "sbc_primitives_mmx.h"
+#include "sbc_primitives_sse.h"
 
 /*
- * MMX optimizations
+ * SSE optimizations
  */
 
-#ifdef SBC_BUILD_WITH_MMX_SUPPORT
+#ifdef SBC_BUILD_WITH_SSE_SUPPORT
 
-static inline void sbc_analyze_four_mmx(const int16_t *in, int32_t *out,
+static inline void sbc_analyze_four_sse(const int16_t *in, int32_t *out,
 					const FIXED_T *consts)
 {
 	static const SBC_ALIGNED int32_t round_c[2] = {
@@ -104,7 +101,7 @@ static inline void sbc_analyze_four_mmx(const int16_t *in, int32_t *out,
 		: "cc", "memory");
 }
 
-static inline void sbc_analyze_eight_mmx(const int16_t *in, int32_t *out,
+static inline void sbc_analyze_eight_sse(const int16_t *in, int32_t *out,
 							const FIXED_T *consts)
 {
 	static const SBC_ALIGNED int32_t round_c[2] = {
@@ -246,58 +243,58 @@ static inline void sbc_analyze_eight_mmx(const int16_t *in, int32_t *out,
 		: "cc", "memory");
 }
 
-static inline void sbc_analyze_4b_4s_mmx(struct sbc_encoder_state *state,
+static inline void sbc_analyze_4b_4s_sse(struct sbc_encoder_state *state,
 		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
-	sbc_analyze_four_mmx(x + 12, out, analysis_consts_fixed4_simd_odd);
+	sbc_analyze_four_sse(x + 12, out, analysis_consts_fixed4_simd_odd);
 	out += out_stride;
-	sbc_analyze_four_mmx(x + 8, out, analysis_consts_fixed4_simd_even);
+	sbc_analyze_four_sse(x + 8, out, analysis_consts_fixed4_simd_even);
 	out += out_stride;
-	sbc_analyze_four_mmx(x + 4, out, analysis_consts_fixed4_simd_odd);
+	sbc_analyze_four_sse(x + 4, out, analysis_consts_fixed4_simd_odd);
 	out += out_stride;
-	sbc_analyze_four_mmx(x + 0, out, analysis_consts_fixed4_simd_even);
+	sbc_analyze_four_sse(x + 0, out, analysis_consts_fixed4_simd_even);
 
 	__asm__ volatile ("emms\n");
 }
 
-static inline void sbc_analyze_4b_8s_mmx(struct sbc_encoder_state *state,
+static inline void sbc_analyze_4b_8s_sse(struct sbc_encoder_state *state,
 		int16_t *x, int32_t *out, int out_stride)
 {
 	/* Analyze blocks */
-	sbc_analyze_eight_mmx(x + 24, out, analysis_consts_fixed8_simd_odd);
+	sbc_analyze_eight_sse(x + 24, out, analysis_consts_fixed8_simd_odd);
 	out += out_stride;
-	sbc_analyze_eight_mmx(x + 16, out, analysis_consts_fixed8_simd_even);
+	sbc_analyze_eight_sse(x + 16, out, analysis_consts_fixed8_simd_even);
 	out += out_stride;
-	sbc_analyze_eight_mmx(x + 8, out, analysis_consts_fixed8_simd_odd);
+	sbc_analyze_eight_sse(x + 8, out, analysis_consts_fixed8_simd_odd);
 	out += out_stride;
-	sbc_analyze_eight_mmx(x + 0, out, analysis_consts_fixed8_simd_even);
+	sbc_analyze_eight_sse(x + 0, out, analysis_consts_fixed8_simd_even);
 
 	__asm__ volatile ("emms\n");
 }
 
-static inline void sbc_analyze_1b_8s_mmx_even(struct sbc_encoder_state *state,
+static inline void sbc_analyze_1b_8s_sse_even(struct sbc_encoder_state *state,
 		int16_t *x, int32_t *out, int out_stride);
 
-static inline void sbc_analyze_1b_8s_mmx_odd(struct sbc_encoder_state *state,
+static inline void sbc_analyze_1b_8s_sse_odd(struct sbc_encoder_state *state,
 		int16_t *x, int32_t *out, int out_stride)
 {
-	sbc_analyze_eight_mmx(x, out, analysis_consts_fixed8_simd_odd);
-	state->sbc_analyze_8s = sbc_analyze_1b_8s_mmx_even;
+	sbc_analyze_eight_sse(x, out, analysis_consts_fixed8_simd_odd);
+	state->sbc_analyze_8s = sbc_analyze_1b_8s_sse_even;
 
 	__asm__ volatile ("emms\n");
 }
 
-static inline void sbc_analyze_1b_8s_mmx_even(struct sbc_encoder_state *state,
+static inline void sbc_analyze_1b_8s_sse_even(struct sbc_encoder_state *state,
 		int16_t *x, int32_t *out, int out_stride)
 {
-	sbc_analyze_eight_mmx(x, out, analysis_consts_fixed8_simd_even);
-	state->sbc_analyze_8s = sbc_analyze_1b_8s_mmx_odd;
+	sbc_analyze_eight_sse(x, out, analysis_consts_fixed8_simd_even);
+	state->sbc_analyze_8s = sbc_analyze_1b_8s_sse_odd;
 
 	__asm__ volatile ("emms\n");
 }
 
-static void sbc_calc_scalefactors_mmx(
+static void sbc_calc_scalefactors_sse(
 	int32_t sb_sample_f[16][2][8],
 	uint32_t scale_factor[2][8],
 	int blocks, int channels, int subbands)
@@ -350,19 +347,19 @@ static void sbc_calc_scalefactors_mmx(
 	__asm__ volatile ("emms\n");
 }
 
-void sbc_init_primitives_mmx(struct sbc_encoder_state *state)
+void sbc_init_primitives_sse(struct sbc_encoder_state *state)
 {
-	state->sbc_analyze_4s = sbc_analyze_4b_4s_mmx;
+	state->sbc_analyze_4s = sbc_analyze_4b_4s_sse;
 	if (state->increment == 1)
-		state->sbc_analyze_8s = sbc_analyze_1b_8s_mmx_odd;
+		state->sbc_analyze_8s = sbc_analyze_1b_8s_sse_odd;
 	else
-		state->sbc_analyze_8s = sbc_analyze_4b_8s_mmx;
-	state->sbc_calc_scalefactors = sbc_calc_scalefactors_mmx;
-	state->implementation_info = "MMX";
+		state->sbc_analyze_8s = sbc_analyze_4b_8s_sse;
+	state->sbc_calc_scalefactors = sbc_calc_scalefactors_sse;
+	state->implementation_info = "SSE";
 }
 
 #else
-void sbc_init_primitives_mmx(struct sbc_encoder_state *state)
+void sbc_init_primitives_sse(struct sbc_encoder_state *state)
 {
 }
 #endif
