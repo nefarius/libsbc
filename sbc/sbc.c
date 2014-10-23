@@ -1402,7 +1402,7 @@ SBC_EXPORT size_t sbc_get_frame_length(sbc_t *sbc)
 
 	ret = 4 + (4 * subbands * channels) / 8;
 	/* This term is not always evenly divide so we round it up */
-	if (channels == 1)
+	if (channels == 1 || sbc->mode == SBC_MODE_DUAL_CHANNEL)
 		ret += ((blocks * channels * bitpool) + 7) / 8;
 	else
 		ret += (((joint ? subbands : 0) + blocks * bitpool) + 7) / 8;
