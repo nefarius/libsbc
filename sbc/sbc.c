@@ -119,7 +119,7 @@ struct sbc_frame {
 	uint8_t subbands;
 	uint8_t bitpool;
 	uint16_t codesize;
-	uint8_t length;
+	uint16_t length;
 
 	/* bit number x set means joint stereo has been used in subband x */
 	uint8_t joint;
