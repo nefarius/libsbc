@@ -190,7 +190,7 @@ static uint8_t sbc_crc8(const uint8_t *data, size_t len)
 	for (i = 0; i < len / 8; i++)
 		crc = crc_table[crc ^ data[i]];
 
-	octet = data[i];
+	octet = len % 8 ? data[i] : 0;
 	for (i = 0; i < len % 8; i++) {
 		char bit = ((octet ^ crc) & 0x80) >> 7;
 
