@@ -1191,7 +1191,7 @@ SBC_EXPORT int sbc_init_a2dp(sbc_t *sbc, unsigned long flags,
 	return 0;
 }
 
-int sbc_reinit_a2dp(sbc_t *sbc, unsigned long flags,
+SBC_EXPORT int sbc_reinit_a2dp(sbc_t *sbc, unsigned long flags,
 					const void *conf, size_t conf_len)
 {
 	int err;
