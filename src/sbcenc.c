@@ -105,6 +105,10 @@ static void encode(char *filename, int subbands, int bitpool, int joint,
 		case 48000:
 			sbc.frequency = SBC_FREQ_48000;
 			break;
+		default:
+			fprintf(stderr, "Unsupported sample rate %ukHz\n",
+					BE_INT(au_hdr.sample_rate));
+			goto done;
 		}
 
 		srate = BE_INT(au_hdr.sample_rate);
