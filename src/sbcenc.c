@@ -142,7 +142,6 @@ static void encode(char *filename, int subbands, int bitpool, int joint,
 					blocks == 12 ? SBC_BLK_12 : SBC_BLK_16;
 	} else {
 		if (BE_INT(au_hdr.sample_rate) != 16000 ||
-				BE_INT(au_hdr.channels) != 1 ||
 				BE_INT(au_hdr.channels) != 1) {
 			fprintf(stderr, "mSBC requires 16 bits, 16kHz, mono "
 								"input\n");
