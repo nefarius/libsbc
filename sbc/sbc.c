@@ -1087,6 +1087,24 @@ SBC_EXPORT int sbc_init_msbc(sbc_t *sbc, unsigned long flags)
 	return 0;
 }
 
+SBC_EXPORT int sbc_reinit_msbc(sbc_t *sbc, unsigned long flags)
+{
+	int err;
+
+	err = sbc_reinit(sbc, flags);
+	if (err < 0)
+		return err;
+
+	sbc->frequency = SBC_FREQ_16000;
+	sbc->blocks = MSBC_BLOCKS;
+	sbc->subbands = SBC_SB_8;
+	sbc->mode = SBC_MODE_MONO;
+	sbc->allocation = SBC_AM_LOUDNESS;
+	sbc->bitpool = 26;
+
+	return 0;
+}
+
 static int sbc_set_a2dp(sbc_t *sbc, unsigned long flags,
 					const void *conf, size_t conf_len)
 {

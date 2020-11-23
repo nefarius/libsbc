@@ -26,3 +26,8 @@ global:
 	sbc_init_a2dp;
 	sbc_reinit_a2dp;
 } SBC_1.1;
+
+SBC_1.3 {
+global:
+	sbc_reinit_msbc;
+} SBC_1.2;

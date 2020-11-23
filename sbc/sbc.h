@@ -85,6 +85,7 @@ typedef struct sbc_struct sbc_t;
 int sbc_init(sbc_t *sbc, unsigned long flags);
 int sbc_reinit(sbc_t *sbc, unsigned long flags);
 int sbc_init_msbc(sbc_t *sbc, unsigned long flags);
+int sbc_reinit_msbc(sbc_t *sbc, unsigned long flags);
 int sbc_init_a2dp(sbc_t *sbc, unsigned long flags,
 					const void *conf, size_t conf_len);
 int sbc_reinit_a2dp(sbc_t *sbc, unsigned long flags,
