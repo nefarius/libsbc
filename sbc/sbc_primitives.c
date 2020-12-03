@@ -595,8 +595,10 @@ static void sbc_init_primitives_x86(struct sbc_encoder_state *state)
 {
 	__builtin_cpu_init();
 
+#ifdef SBC_BUILD_WITH_MMX_SUPPORT
 	if (__builtin_cpu_supports("mmx"))
 		sbc_init_primitives_mmx(state);
+#endif
 
 #ifdef SBC_BUILD_WITH_SSE_SUPPORT
 	if (__builtin_cpu_supports("sse4.2"))

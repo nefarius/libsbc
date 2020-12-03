@@ -360,9 +360,4 @@ void sbc_init_primitives_mmx(struct sbc_encoder_state *state)
 	state->sbc_calc_scalefactors = sbc_calc_scalefactors_mmx;
 	state->implementation_info = "MMX";
 }
-
-#else
-void sbc_init_primitives_mmx(struct sbc_encoder_state *state)
-{
-}
 #endif
