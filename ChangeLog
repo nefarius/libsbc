@@ -1,3 +1,6 @@
+ver 1.5:
+	Add support for SSE primitives.
+
 ver 1.4:
 	Fix issue with stack overflow within sbc_crc8 function.
 
