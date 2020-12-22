@@ -593,6 +593,7 @@ static int sbc_calc_scalefactors_j(
 
 static void sbc_init_primitives_x86(struct sbc_encoder_state *state)
 {
+#if defined(__x86_64__) || defined(__i386__)
 	__builtin_cpu_init();
 
 #ifdef SBC_BUILD_WITH_MMX_SUPPORT
@@ -603,6 +604,7 @@ static void sbc_init_primitives_x86(struct sbc_encoder_state *state)
 #ifdef SBC_BUILD_WITH_SSE_SUPPORT
 	if (__builtin_cpu_supports("sse4.2"))
 		sbc_init_primitives_sse(state);
+#endif
 #endif
 }
 
