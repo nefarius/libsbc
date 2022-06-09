@@ -112,6 +112,7 @@
     <ClCompile Include="sbc\sbc_primitives_sse.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sbc\sbc.h" />
     <ClInclude Include="sbc\sbc_math.h" />
     <ClInclude Include="sbc\sbc_primitives.h" />
@@ -123,6 +124,9 @@
     <ClInclude Include="sbc\sbc_private.h" />
     <ClInclude Include="sbc\sbc_tables.h" />
     <ClInclude Include="src\formats.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="libsbc.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
