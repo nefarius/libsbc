@@ -67,11 +67,11 @@ BEGIN
     BEGIN
         BLOCK "080904b0"
         BEGIN
-            VALUE "CompanyName", "Benjamin Höglinger-Stelzer"
+            VALUE "CompanyName", "Benjamin Hoeglinger-Stelzer"
             VALUE "FileDescription", "libsbc"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "libsbc.dll"
-            VALUE "LegalCopyright", "Copyright (C) 2022 Benjamin Höglinger-Stelzer"
+            VALUE "LegalCopyright", "Copyright (C) 2022 Benjamin Hoeglinger-Stelzer"
             VALUE "OriginalFilename", "libsbc.dll"
             VALUE "ProductName", "libsbc"
             VALUE "ProductVersion", "1.0.0.1"
