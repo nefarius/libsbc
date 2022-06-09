@@ -34,6 +34,10 @@ extern "C" {
 
 #include <stdint.h>
 #include <sys/types.h>
+#if defined(_MSC_VER)
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
+#endif
 
 /* sampling frequency */
 #define SBC_FREQ_16000		0x00

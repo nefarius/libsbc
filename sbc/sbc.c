@@ -72,6 +72,9 @@
 
 #if __BYTE_ORDER == __LITTLE_ENDIAN
 
+#if defined(_MSC_VER)
+#include <pshpack1.h>
+#endif
 struct a2dp_sbc {
 	uint8_t channel_mode:4;
 	uint8_t frequency:4;
@@ -80,7 +83,13 @@ struct a2dp_sbc {
 	uint8_t block_length:4;
 	uint8_t min_bitpool;
 	uint8_t max_bitpool;
+#if !defined(_MSC_VER)
 } __attribute__ ((packed));
+#else
+};
+#include <poppack.h>
+#endif
+
 
 #elif __BYTE_ORDER == __BIG_ENDIAN
 

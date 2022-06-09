@@ -24,6 +24,10 @@
  *
  */
 
+#if defined(_MSC_VER)
+#include <stdint.h>
+#endif
+
 /* A2DP specification: Appendix B, page 69 */
 static const int sbc_offset4[4][4] = {
 	{ -1, 0, 0, 0 },

@@ -22,4 +22,8 @@
  *
  */
 
+#if defined(_MSC_VER)
+#define SBC_EXPORT __declspec(dllexport)
+#else
 #define SBC_EXPORT __attribute__ ((visibility("default")))
+#endif
