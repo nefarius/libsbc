@@ -103,30 +103,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="$(ProjectDir)\..\sbc\sbc.c" />
-    <ClCompile Include="$(ProjectDir)\..\sbc\sbc_primitives.c" />
-    <ClCompile Include="$(ProjectDir)\..\sbc\sbc_primitives_armv6.c" />
-    <ClCompile Include="$(ProjectDir)\..\sbc\sbc_primitives_iwmmxt.c" />
-    <ClCompile Include="$(ProjectDir)\..\sbc\sbc_primitives_mmx.c" />
-    <ClCompile Include="$(ProjectDir)\..\sbc\sbc_primitives_neon.c" />
-    <ClCompile Include="$(ProjectDir)\..\sbc\sbc_primitives_sse.c" />
+    <ClCompile Include="..\sbc\sbc.c" />
+    <ClCompile Include="..\sbc\sbc_primitives.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_armv6.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_iwmmxt.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_mmx.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_neon.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_sse.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(ProjectDir)\resource.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_math.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_primitives.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_primitives_armv6.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_primitives_iwmmxt.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_primitives_mmx.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_primitives_neon.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_primitives_sse.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_private.h" />
-    <ClInclude Include="$(ProjectDir)\..\sbc\sbc_tables.h" />
-    <ClInclude Include="$(ProjectDir)\..\src\formats.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\sbc\sbc.h" />
+    <ClInclude Include="..\sbc\sbc_math.h" />
+    <ClInclude Include="..\sbc\sbc_primitives.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_armv6.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_iwmmxt.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_mmx.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_neon.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_sse.h" />
+    <ClInclude Include="..\sbc\sbc_private.h" />
+    <ClInclude Include="..\sbc\sbc_tables.h" />
+    <ClInclude Include="..\src\formats.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="$(ProjectDir)\libsbc.rc" />
+    <ResourceCompile Include="libsbc.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
