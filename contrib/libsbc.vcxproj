@@ -68,10 +68,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(PlatformName)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(PlatformName)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -103,27 +103,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="sbc\sbc.c" />
-    <ClCompile Include="sbc\sbc_primitives.c" />
-    <ClCompile Include="sbc\sbc_primitives_armv6.c" />
-    <ClCompile Include="sbc\sbc_primitives_iwmmxt.c" />
-    <ClCompile Include="sbc\sbc_primitives_mmx.c" />
-    <ClCompile Include="sbc\sbc_primitives_neon.c" />
-    <ClCompile Include="sbc\sbc_primitives_sse.c" />
+    <ClCompile Include="..\sbc\sbc.c" />
+    <ClCompile Include="..\sbc\sbc_primitives.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_armv6.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_iwmmxt.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_mmx.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_neon.c" />
+    <ClCompile Include="..\sbc\sbc_primitives_sse.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="sbc\sbc.h" />
-    <ClInclude Include="sbc\sbc_math.h" />
-    <ClInclude Include="sbc\sbc_primitives.h" />
-    <ClInclude Include="sbc\sbc_primitives_armv6.h" />
-    <ClInclude Include="sbc\sbc_primitives_iwmmxt.h" />
-    <ClInclude Include="sbc\sbc_primitives_mmx.h" />
-    <ClInclude Include="sbc\sbc_primitives_neon.h" />
-    <ClInclude Include="sbc\sbc_primitives_sse.h" />
-    <ClInclude Include="sbc\sbc_private.h" />
-    <ClInclude Include="sbc\sbc_tables.h" />
-    <ClInclude Include="src\formats.h" />
+    <ClInclude Include="..\sbc\sbc.h" />
+    <ClInclude Include="..\sbc\sbc_math.h" />
+    <ClInclude Include="..\sbc\sbc_primitives.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_armv6.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_iwmmxt.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_mmx.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_neon.h" />
+    <ClInclude Include="..\sbc\sbc_primitives_sse.h" />
+    <ClInclude Include="..\sbc\sbc_private.h" />
+    <ClInclude Include="..\sbc\sbc_tables.h" />
+    <ClInclude Include="..\src\formats.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="libsbc.rc" />
