@@ -1,5 +1,5 @@
-AC_PREREQ(2.60)
-AC_INIT(sbc, 1.5)
+AC_PREREQ([2.69])
+AC_INIT([sbc], [1.5])
 
 AM_INIT_AUTOMAKE([foreign subdir-objects color-tests])
 AC_CONFIG_HEADERS(config.h)
@@ -12,7 +12,7 @@ AC_PREFIX_DEFAULT(/usr/local)
 
 COMPILER_FLAGS
 
-AC_LANG_C
+AC_LANG([C])
 
 AC_PROG_CC
 AC_PROG_CC_PIE
@@ -20,14 +20,14 @@ AC_PROG_INSTALL
 
 LT_INIT
 
-AC_ARG_ENABLE(optimization, AC_HELP_STRING([--disable-optimization],
+AC_ARG_ENABLE(optimization, AS_HELP_STRING([--disable-optimization],
 			[disable code optimization through compiler]), [
 	if (test "${enableval}" = "no"); then
 		CFLAGS="$CFLAGS -O0"
 	fi
 ])
 
-AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug],
+AC_ARG_ENABLE(debug, AS_HELP_STRING([--enable-debug],
 			[enable compiling with debugging information]), [
 	if (test "${enableval}" = "yes" &&
 				test "${ac_cv_prog_cc_g}" = "yes"); then
@@ -35,7 +35,7 @@ AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug],
 	fi
 ])
 
-AC_ARG_ENABLE(pie, AC_HELP_STRING([--enable-pie],
+AC_ARG_ENABLE(pie, AS_HELP_STRING([--enable-pie],
 			[enable position independent executables flag]), [
 	if (test "${enableval}" = "yes" &&
 				test "${ac_cv_prog_cc_pie}" = "yes"); then
@@ -44,7 +44,7 @@ AC_ARG_ENABLE(pie, AC_HELP_STRING([--enable-pie],
 	fi
 ])
 
-AC_ARG_ENABLE(high-precision, AC_HELP_STRING([--enable-high-precision],
+AC_ARG_ENABLE(high-precision, AS_HELP_STRING([--enable-high-precision],
 					[enable SBC high precision support]),
 					[enable_high_precision=${enableval}])
 if (test "${enable_high_precision}" = "yes"); then
@@ -52,11 +52,11 @@ if (test "${enable_high_precision}" = "yes"); then
 		[Define to 1 to enable high precision build of SBC encoder])
 fi
 
-AC_ARG_ENABLE(tools, AC_HELP_STRING([--disable-tools],
+AC_ARG_ENABLE(tools, AS_HELP_STRING([--disable-tools],
 		[disable SBC tools]), [enable_tools=${enableval}])
 AM_CONDITIONAL(TOOLS, test "${enable_tools}" != "no")
 
-AC_ARG_ENABLE(tester, AC_HELP_STRING([--disable-tester],
+AC_ARG_ENABLE(tester, AS_HELP_STRING([--disable-tester],
 		[disable SBC tester]), [enable_tester=${enableval}])
 if (test "${enable_tester}" != "no"); then
 	PKG_CHECK_MODULES(SNDFILE, sndfile, dummy=yes,
@@ -66,4 +66,10 @@ if (test "${enable_tester}" != "no"); then
 fi
 AM_CONDITIONAL(TESTER, test "${enable_tester}" != "no")
 
-AC_OUTPUT(Makefile sbc/sbc.pc)
+AC_CONFIG_FILES(Makefile sbc/sbc.pc)
+
+AC_OUTPUT
+
+AC_MSG_RESULT([
+	$PACKAGE_NAME $VERSION
+])
