@@ -7,7 +7,7 @@ AM_MAKEFLAGS = --no-print-directory
 # Interfaces removed:		CURRENT++ REVISION=0 AGE=0
 
 SBC_CURRENT = 4
-SBC_REVISION = 0
+SBC_REVISION = 1
 SBC_AGE = 3
 
 sbc_headers = sbc/sbc.h
