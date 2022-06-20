@@ -19,7 +19,8 @@ AC_PROG_CC
 AC_PROG_CC_PIE
 AC_PROG_INSTALL
 
-LT_INIT
+LT_PREREQ(2.2)
+LT_INIT([disable-static])
 
 AC_ARG_ENABLE(optimization, AS_HELP_STRING([--disable-optimization],
 			[disable code optimization through compiler]), [
