@@ -1,3 +1,6 @@
+ver 2.0:
+	Fix issue with SSE primitives on non-x86.
+
 ver 1.5:
 	Add support for SSE primitives.
 
