@@ -1,7 +1,8 @@
 AC_PREREQ([2.69])
 AC_INIT([sbc], [1.5])
 
-AM_INIT_AUTOMAKE([foreign subdir-objects color-tests])
+AM_INIT_AUTOMAKE([foreign subdir-objects color-tests silent-rules
+					tar-pax no-dist-gzip dist-xz])
 AC_CONFIG_HEADERS(config.h)
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
