@@ -71,7 +71,7 @@ BEGIN
             VALUE "FileDescription", "libsbc"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "libsbc.dll"
-            VALUE "LegalCopyright", "Copyright (C) 2022 Benjamin Hoeglinger-Stelzer"
+            VALUE "LegalCopyright", "Copyright (C) 2022-2023 Benjamin Hoeglinger-Stelzer"
             VALUE "OriginalFilename", "libsbc.dll"
             VALUE "ProductName", "libsbc"
             VALUE "ProductVersion", "1.0.0.1"
