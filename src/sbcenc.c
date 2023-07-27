@@ -89,6 +89,8 @@ static void encode(char *filename, int subbands, int bitpool, int joint,
 		goto done;
 	}
 
+	srate = BE_INT(au_hdr.sample_rate);
+
 	if (!msbc) {
 		sbc_init(&sbc, 0L);
 
@@ -110,8 +112,6 @@ static void encode(char *filename, int subbands, int bitpool, int joint,
 					BE_INT(au_hdr.sample_rate));
 			goto done;
 		}
-
-		srate = BE_INT(au_hdr.sample_rate);
 
 		sbc.subbands = subbands == 4 ? SBC_SB_4 : SBC_SB_8;
 
@@ -141,8 +141,7 @@ static void encode(char *filename, int subbands, int bitpool, int joint,
 				blocks == 8 ? SBC_BLK_8 :
 					blocks == 12 ? SBC_BLK_12 : SBC_BLK_16;
 	} else {
-		if (BE_INT(au_hdr.sample_rate) != 16000 ||
-				BE_INT(au_hdr.channels) != 1) {
+		if (srate != 16000 || BE_INT(au_hdr.channels) != 1) {
 			fprintf(stderr, "mSBC requires 16 bits, 16kHz, mono "
 								"input\n");
 			goto done;
