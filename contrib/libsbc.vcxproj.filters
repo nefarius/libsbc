@@ -15,63 +15,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sbc\sbc.c">
+    <ClCompile Include="..\sbc\sbc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sbc\sbc_primitives.c">
+    <ClCompile Include="..\sbc\sbc_primitives.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sbc\sbc_primitives_armv6.c">
+    <ClCompile Include="..\sbc\sbc_primitives_armv6.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sbc\sbc_primitives_iwmmxt.c">
+    <ClCompile Include="..\sbc\sbc_primitives_iwmmxt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sbc\sbc_primitives_mmx.c">
+    <ClCompile Include="..\sbc\sbc_primitives_mmx.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sbc\sbc_primitives_neon.c">
+    <ClCompile Include="..\sbc\sbc_primitives_neon.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sbc\sbc_primitives_sse.c">
+    <ClCompile Include="..\sbc\sbc_primitives_sse.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sbc\sbc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_primitives.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_primitives_armv6.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_primitives_iwmmxt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_primitives_mmx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_primitives_neon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_primitives_sse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_private.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sbc\sbc_tables.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\formats.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_primitives.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_primitives_armv6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_primitives_iwmmxt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_primitives_mmx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_primitives_neon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_primitives_sse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sbc\sbc_tables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\formats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
