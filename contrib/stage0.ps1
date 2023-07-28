@@ -2,8 +2,6 @@ Param(
     [Parameter(Mandatory=$true)]
     [string]$BuildVersion,
     [Parameter(Mandatory=$true)]
-    [string]$SetupVersion,
-    [Parameter(Mandatory=$true)]
     [string]$Token,
     [Parameter(Mandatory=$false)]
     [string]$Path = "./artifacts",
