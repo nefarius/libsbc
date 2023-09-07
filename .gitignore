@@ -21,6 +21,7 @@ libtool
 ltmain.sh
 missing
 stamp-h1
+build-aux
 autom4te.cache
 
 sbc/sbc.pc
