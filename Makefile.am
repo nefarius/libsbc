@@ -1,6 +1,8 @@
 
 AM_MAKEFLAGS = --no-print-directory
 
+ACLOCAL_AMFLAGS = -I build-aux
+
 # Library code modified:	REVISION++
 # Interfaces changed:		CURRENT++ REVISION=0
 # Interfaces added:		CURRENT++ REVISION=0 AGE++
@@ -67,3 +69,6 @@ EXTRA_DIST = sbc/sbc.sym
 MAINTAINERCLEANFILES = Makefile.in \
 	aclocal.m4 configure config.h.in config.sub config.guess \
 	ltmain.sh depcomp compile missing install-sh mkinstalldirs
+
+maintainer-clean-local:
+	-rm -rf build-aux
