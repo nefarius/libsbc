@@ -313,8 +313,4 @@ void sbc_init_primitives_sse(struct sbc_encoder_state *state)
 	state->implementation_info = "SSE";
 }
 
-#else
-void sbc_init_primitives_sse(struct sbc_encoder_state *state)
-{
-}
 #endif
