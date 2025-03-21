@@ -1,3 +1,6 @@
+ver 2.1:
+	Fix issue when compiling without SBC_BUILD_WITH_SSE_SUPPORT.
+
 ver 2.0:
 	Fix issue with SSE primitives on non-x86.
 
