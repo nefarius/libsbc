@@ -8,7 +8,7 @@ Bluetooth low-complexity, subband codec (SBC) library. Forked from [here](https:
 
 Check out the latest [Releases](../../releases) for **signed and tested** builds.
 
-CI build artifacts (unsigned) get mirrorerd [to my fileserver](https://buildbot.nefarius.at/builds/libsbc/latest/).
+CI build artifacts (unsigned) get mirrored [to my fileserver](https://buildbot.nefarius.at/builds/libsbc/latest/).
 
 ## Requirements
 
