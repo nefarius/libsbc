@@ -1,5 +1,5 @@
-version: 2.0.{build}.0
-image: Visual Studio 2019
+version: 2.1.{build}.0
+image: Visual Studio 2022
 platform:
 - x86
 - x64
@@ -9,8 +9,8 @@ configuration:
 install:
 - cmd: git submodule -q update --init
 before_build:
-- ps: Invoke-WebRequest "https://downloads.nefarius.at/other/nefarius/vpatch/vpatch.exe" -OutFile vpatch.exe
-- cmd: vpatch.exe --stamp-version "%APPVEYOR_BUILD_VERSION%" --target-file ".\contrib\%APPVEYOR_PROJECT_NAME%.rc" --resource.file-version --resource.product-version
+- cmd: dotnet tool install --global Nefarius.Tools.Vpatch
+- cmd: vpatch --stamp-version "%APPVEYOR_BUILD_VERSION%" --target-file ".\contrib\%APPVEYOR_PROJECT_NAME%.rc" --resource.file-version --resource.product-version
 skip_commits:
   files:
     - assets/*
